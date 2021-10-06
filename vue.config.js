@@ -9,6 +9,7 @@ function resolve(dir) {
 module.exports = {
     publicPath: process.env.NODE_ENV == 'development' ? "/" : "/test/",
     lintOnSave: true,
+    productionSourceMap: false,
     css: {
         loaderOptions: {
             scss: {
@@ -42,7 +43,7 @@ module.exports = {
                 //压缩算法
                 algorithm: 'gzip',
                 //匹配文件
-                test: /\.js$|\.css$|\.html$/,
+                test: /\.js$|\.css$/,
                 //压缩超过此大小的文件,以字节为单位
                 // threshold: 10240,
                 threshold: 100,
@@ -74,11 +75,7 @@ module.exports = {
         // config.plugins.delete('preload');
 
 
-        // config.plugin('preload').tap(
-        //     args => {
-        //         args[0].include='allAssets';
-        //         return args
-        //     })
+        
     },
 
     devServer: {
