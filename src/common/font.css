@@ -1,5 +1,6 @@
 @font-face {
     font-family: 'my-font';
+    font-display: block;
     font-weight: normal;
     font-style: normal;
     font-display:auto;
