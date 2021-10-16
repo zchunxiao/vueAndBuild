@@ -13,6 +13,7 @@ module.exports = {
         "parser": "babel-eslint"
     },
     rules: {
+        quotes: ["error", "double"],
         "prettier/prettier": "off",
 
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",

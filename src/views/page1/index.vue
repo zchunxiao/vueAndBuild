@@ -17,7 +17,7 @@ export default {
   created() {},
 
   mounted() {
-    const a  ="1111"
+    const a  ='1111'
   },
 
   methods: {}
