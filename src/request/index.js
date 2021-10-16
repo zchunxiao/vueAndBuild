@@ -6,11 +6,11 @@
  * @Description: In User Settings Edit
  * @FilePath: \visual-ui\src\request\index.js
  */
-import axios from 'axios'
-import { serialize } from '@/util/util'
-import errorCode from '@/const/errorCode'
-import { Toast } from 'mint-ui'
-import qs from 'qs'
+import axios from "axios"
+import { serialize } from "@/util/util"
+import errorCode from "@/const/errorCode"
+import { Toast } from "mint-ui"
+import qs from "qs"
 
 
 
@@ -35,16 +35,16 @@ axios.defaults.withCredentials = false
 axios.interceptors.request.use(config => {
 
 
-  config.headers['test'] = 1;
+  config.headers.test = 1;
   // headers中配置serialize为true开启序列化
-  if (config.method === 'post' && config.headers.serialize) {
+  if (config.method === "post" && config.headers.serialize) {
     config.data = serialize(config.data)
     delete config.data.serialize
   }
 
-  if (config.method === 'get') {
+  if (config.method === "get") {
     config.paramsSerializer = function (params) {
-      return qs.stringify(params, { arrayFormat: 'repeat' })
+      return qs.stringify(params, { arrayFormat: "repeat" })
     }
   }
 
@@ -57,7 +57,7 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(res => {
 
   const status = Number(res.status) || 200
-  const message = res.data.msg || errorCode[status] || errorCode['default']
+  const message = res.data.msg || errorCode[status] || errorCode.default
 
 
   if (status !== 200) {

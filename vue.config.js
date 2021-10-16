@@ -1,19 +1,19 @@
-const url = process.env.NODE_ENV == 'development' ? "https://apigw.myzebravip.com" : "https://apigwtest.myzebravip.com";
+const url = process.env.NODE_ENV == "development" ? "https://apigw.myzebravip.com" : "https://apigwtest.myzebravip.com";
 const path = require("path");
-const CompressionPlugin = require('compression-webpack-plugin');//引入compression-webpack-plugin
+const CompressionPlugin = require("compression-webpack-plugin");//引入compression-webpack-plugin
 
 function resolve(dir) {
     return path.join(__dirname, dir);
 }
 module.exports = {
-    publicPath: process.env.NODE_ENV == 'development' ? "/" : "/test/",
+    publicPath: process.env.NODE_ENV == "development" ? "/" : "/test/",
     lintOnSave: true,
     productionSourceMap: false,
     css: {
         loaderOptions: {
             scss: {
                 //prependData: `@import "@/assets/scss/_variable.scss";` //引入全局变量 
-                additionalData: `@import "@/assets/style/scss/_variable.scss";` //引入全局变量 
+                additionalData: "@import \"@/assets/style/scss/_variable.scss\";" //引入全局变量 
             }
 
         }
@@ -21,7 +21,7 @@ module.exports = {
     configureWebpack: {
         resolve: {
             alias: {
-                '@': resolve('src')
+                "@": resolve("src")
             }
         },
         performance: {
@@ -32,15 +32,15 @@ module.exports = {
             //生成文件的最大体积
             maxAssetSize: 30000000,
             //控制用于计算---性能提示的文件
-            assetFilter: function (assetFileName) {
-                return assetFileName.endsWith('js')
+            assetFilter (assetFileName) {
+                return assetFileName.endsWith("js")
             }
         },
         plugins: [
             new CompressionPlugin({
-                filename: '[path].gz[query]',
+                filename: "[path].gz[query]",
                 //压缩算法
-                algorithm: 'gzip',
+                algorithm: "gzip",
                 //匹配文件
                 test: /\.js$|\.css$/,
                 //压缩超过此大小的文件,以字节为单位
@@ -55,8 +55,8 @@ module.exports = {
     },
     chainWebpack: config => {
         if (process.env.use_analyzer) {
-            config.plugin('webpack-bundle-analyzer')
-                .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
+            config.plugin("webpack-bundle-analyzer")
+                .use(require("webpack-bundle-analyzer").BundleAnalyzerPlugin)
         }
 
         // config.set('externals', {
@@ -79,7 +79,7 @@ module.exports = {
 
     devServer: {
         proxy: {
-            '/ruban': {
+            "/ruban": {
                 target: url,
                 ws: true,
                 changeOrign: true

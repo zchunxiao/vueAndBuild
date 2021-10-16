@@ -25,30 +25,30 @@
 <script>
 import "../../button.css"
   export default {
-    name: 'ElButton',
+    name: "ElButton",
 
     inject: {
       elForm: {
-        default: ''
+        default: ""
       },
       elFormItem: {
-        default: ''
+        default: ""
       }
     },
 
     props: {
       type: {
         type: String,
-        default: 'default'
+        default: "default"
       },
       size: String,
       icon: {
         type: String,
-        default: ''
+        default: ""
       },
       nativeType: {
         type: String,
-        default: 'button'
+        default: "button"
       },
       loading: Boolean,
       disabled: Boolean,
@@ -72,7 +72,7 @@ import "../../button.css"
 
     methods: {
       handleClick(evt) {
-        this.$emit('click', evt);
+        this.$emit("click", evt);
       }
     }
   };

@@ -1,5 +1,5 @@
-import { validatenull } from './validate'
-import request from '@/request'
+import { validatenull } from "./validate"
+import request from "@/request"
 
 
 // 表单序列化
@@ -8,24 +8,24 @@ export const serialize = data => {
   Object.keys(data).forEach(ele => {
     list.push(`${ele}=${data[ele]}`)
   })
-  return list.join('&')
+  return list.join("&")
 }
 export const getObjType = obj => {
-  var toString = Object.prototype.toString
-  var map = {
-    '[object Boolean]': 'boolean',
-    '[object Number]': 'number',
-    '[object String]': 'string',
-    '[object Function]': 'function',
-    '[object Array]': 'array',
-    '[object Date]': 'date',
-    '[object RegExp]': 'regExp',
-    '[object Undefined]': 'undefined',
-    '[object Null]': 'null',
-    '[object Object]': 'object'
+  let toString = Object.prototype.toString
+  let map = {
+    "[object Boolean]": "boolean",
+    "[object Number]": "number",
+    "[object String]": "string",
+    "[object Function]": "function",
+    "[object Array]": "array",
+    "[object Date]": "date",
+    "[object RegExp]": "regExp",
+    "[object Undefined]": "undefined",
+    "[object Null]": "null",
+    "[object Object]": "object"
   }
   if (obj instanceof Element) {
-    return 'element'
+    return "element"
   }
   return map[toString.call(obj)]
 }
@@ -33,22 +33,22 @@ export const getObjType = obj => {
  * 对象深拷贝
  */
 export const deepClone = data => {
-  var type = getObjType(data)
-  var obj
-  if (type === 'array') {
+  let type = getObjType(data)
+  let obj
+  if (type === "array") {
     obj = []
-  } else if (type === 'object') {
+  } else if (type === "object") {
     obj = {}
   } else {
     // 不再具有下一层次
     return data
   }
-  if (type === 'array') {
-    for (var i = 0, len = data.length; i < len; i++) {
+  if (type === "array") {
+    for (let i = 0, len = data.length; i < len; i++) {
       obj.push(deepClone(data[i]))
     }
-  } else if (type === 'object') {
-    for (var key in data) {
+  } else if (type === "object") {
+    for (let key in data) {
       obj[key] = deepClone(data[key])
     }
   }
@@ -59,8 +59,8 @@ export const deepClone = data => {
  */
 export const diff = (obj1, obj2) => {
   delete obj1.close
-  var o1 = obj1 instanceof Object
-  var o2 = obj2 instanceof Object
+  let o1 = obj1 instanceof Object
+  let o2 = obj2 instanceof Object
   if (!o1 || !o2) { /*  判断不是对象  */
     return obj1 === obj2
   }
@@ -70,9 +70,9 @@ export const diff = (obj1, obj2) => {
     // Object.keys() 返回一个由对象的自身可枚举属性(key值)组成的数组,例如：数组返回下表：let arr = ["a", "b", "c"];console.log(Object.keys(arr))->0,1,2;
   }
 
-  for (var attr in obj1) {
-    var t1 = obj1[attr] instanceof Object
-    var t2 = obj2[attr] instanceof Object
+  for (let attr in obj1) {
+    let t1 = obj1[attr] instanceof Object
+    let t2 = obj2[attr] instanceof Object
     if (t1 && t2) {
       return diff(obj1[attr], obj2[attr])
     } else if (obj1[attr] !== obj2[attr]) {
@@ -86,9 +86,9 @@ export const diff = (obj1, obj2) => {
  */
 export const toggleGrayMode = (status) => {
   if (status) {
-    document.body.className = document.body.className + ' grayMode'
+    document.body.className = document.body.className + " grayMode"
   } else {
-    document.body.className = document.body.className.replace(' grayMode', '')
+    document.body.className = document.body.className.replace(" grayMode", "")
   }
 }
 /**
@@ -117,16 +117,16 @@ export const listenfullscreen = (callback) => {
     callback()
   }
 
-  document.addEventListener('fullscreenchange', function() {
+  document.addEventListener("fullscreenchange", () => {
     listen()
   })
-  document.addEventListener('mozfullscreenchange', function() {
+  document.addEventListener("mozfullscreenchange", () => {
     listen()
   })
-  document.addEventListener('webkitfullscreenchange', function() {
+  document.addEventListener("webkitfullscreenchange", () => {
     listen()
   })
-  document.addEventListener('msfullscreenchange', function() {
+  document.addEventListener("msfullscreenchange", () => {
     listen()
   })
 }
@@ -186,11 +186,11 @@ export const findParent = (menu, id) => {
  */
 
 export const loadStyle = url => {
-  const link = document.createElement('link')
-  link.type = 'text/css'
-  link.rel = 'stylesheet'
+  const link = document.createElement("link")
+  link.type = "text/css"
+  link.rel = "stylesheet"
   link.href = url
-  const head = document.getElementsByTagName('head')[0]
+  const head = document.getElementsByTagName("head")[0]
   head.appendChild(link)
 }
 /**
@@ -200,8 +200,8 @@ export const isObjectValueEqual = (a, b) => {
   let result = true
   Object.keys(a).forEach(ele => {
     const type = typeof (a[ele])
-    if (type === 'string' && a[ele] !== b[ele]) result = false
-    else if (type === 'object' && JSON.stringify(a[ele]) !== JSON.stringify(b[ele])) result = false
+    if (type === "string" && a[ele] !== b[ele]) result = false
+    else if (type === "object" && JSON.stringify(a[ele]) !== JSON.stringify(b[ele])) result = false
   })
   return result
 }
@@ -209,9 +209,9 @@ export const isObjectValueEqual = (a, b) => {
  * 根据字典的value显示label
  */
 export const findByvalue = (dic, value) => {
-  let result = ''
+  let result = ""
   if (validatenull(dic)) return value
-  if (typeof (value) === 'string' || typeof (value) === 'number' || typeof (value) === 'boolean') {
+  if (typeof (value) === "string" || typeof (value) === "number" || typeof (value) === "boolean") {
     let index = 0
     index = findArray(dic, value)
     if (index !== -1) {
@@ -249,7 +249,7 @@ export const findArray = (dic, value) => {
  * 生成随机len位数字
  */
 export const randomLenNum = (len, date) => {
-  let random = ''
+  let random = ""
   random = Math.ceil(Math.random() * 100000000000000).toString().substr(0, len || 4)
   if (date) random = random + Date.now()
   return random
@@ -267,7 +267,7 @@ export const openWindow = (url, title, w, h) => {
 
   const left = ((width / 2) - (w / 2)) + dualScreenLeft
   const top = ((height / 2) - (h / 2)) + dualScreenTop
-  const newWindow = window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left)
+  const newWindow = window.open(url, title, "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, copyhistory=no, width=" + w + ", height=" + h + ", top=" + top + ", left=" + left)
 
   // Puts focus on the newWindow
   if (window.focus) {
@@ -281,14 +281,14 @@ export const openWindow = (url, title, w, h) => {
  */
 export function handleImg(url, id) {
   return validatenull(url) ? null : request({
-    url:  url,
-    method: 'get',
-    responseType: 'blob'
+    url,
+    method: "get",
+    responseType: "blob"
   }).then((response) => { // 处理返回的文件流
     const blob = response.data
     const img = document.getElementById(id)
     img.src = URL.createObjectURL(blob)
-    window.setTimeout(function() {
+    window.setTimeout(() => {
       window.URL.revokeObjectURL(blob)
     }, 0)
   })
@@ -296,17 +296,17 @@ export function handleImg(url, id) {
 
 export function handleDown(filename, bucket) {
   return request({
-    url: '/admin/sys-file/' + bucket + '/' + filename,
-    method: 'get',
-    responseType: 'blob'
+    url: "/admin/sys-file/" + bucket + "/" + filename,
+    method: "get",
+    responseType: "blob"
   }).then((response) => { // 处理返回的文件流
     const blob = response.data
-    const link = document.createElement('a')
+    const link = document.createElement("a")
     link.href = URL.createObjectURL(blob)
     link.download = filename
     document.body.appendChild(link)
     link.click()
-    window.setTimeout(function() {
+    window.setTimeout(() => {
       URL.revokeObjectURL(blob)
       document.body.removeChild(link)
     }, 0)
@@ -314,19 +314,19 @@ export function handleDown(filename, bucket) {
 }
 
 export function getQueryString(url, paraName) {
-  const arrObj = url.split('?')
+  const arrObj = url.split("?")
   if (arrObj.length > 1) {
-    const arrPara = arrObj[1].split('&')
+    const arrPara = arrObj[1].split("&")
     let arr
     for (let i = 0; i < arrPara.length; i++) {
-      arr = arrPara[i].split('=')
+      arr = arrPara[i].split("=")
       // eslint-disable-next-line eqeqeq
       if (arr != null && arr[0] == paraName) {
         return arr[1]
       }
     }
-    return ''
+    return ""
   } else {
-    return ''
+    return ""
   }
 }
