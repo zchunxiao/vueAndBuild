@@ -2,7 +2,6 @@ const url = process.env.NODE_ENV == 'development' ? "https://apigw.myzebravip.co
 const path = require("path");
 const CompressionPlugin = require('compression-webpack-plugin');//引入compression-webpack-plugin
 
-// const PreloadWebpackPlugin = require("preload-webpack-plugin");
 function resolve(dir) {
     return path.join(__dirname, dir);
 }
@@ -26,13 +25,13 @@ module.exports = {
             }
         },
         performance: {
-            // hints: process.env.NODE_ENV == "development" ? "error" : "warning",
-            hints: process.env.NODE_ENV == "warning",
+            hints: process.env.NODE_ENV == "development" ? "error" : "warning",
+            // hints: process.env.NODE_ENV == "warning",
             //入口文件的最大体积
-            maxEntrypointSize: 4000000,
+            maxEntrypointSize: 40000000,
             //生成文件的最大体积
             maxAssetSize: 30000000,
-            //控制用于计算性能提示的文件
+            //控制用于计算---性能提示的文件
             assetFilter: function (assetFileName) {
                 return assetFileName.endsWith('js')
             }
@@ -45,8 +44,8 @@ module.exports = {
                 //匹配文件
                 test: /\.js$|\.css$/,
                 //压缩超过此大小的文件,以字节为单位
-                // threshold: 10240,
-                threshold: 100,
+                threshold: 10240,
+                //threshold: 100,
                 minRatio: 0.8,
                 //删除原始文件只保留压缩后的文件
                 deleteOriginalAssets: false
@@ -67,7 +66,7 @@ module.exports = {
         //     "vue-router": "VueRouter",
         //     "axios": "axios"
         // })
-   
+
 
         // // 移除 prefetch 插件
         // config.plugins.delete('prefetch')
@@ -75,7 +74,7 @@ module.exports = {
         // config.plugins.delete('preload');
 
 
-        
+
     },
 
     devServer: {

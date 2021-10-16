@@ -5,6 +5,10 @@ export default {
       }
   },
   props:{},
+  mounted() {
+      console.log('this:',this)
+
+  },
   methods: {
       mixinMethod1(){
           console.log("我是混入的数据")
