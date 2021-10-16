@@ -6,7 +6,6 @@ export default {
     },
     props: {},
     mounted() {
-        var a="";
         console.log('this:', this);
         console.log("ddd:",this.fullNameByMethod());
     },
