@@ -26,10 +26,19 @@ const router = new VueRouter({
         {
             path: "/page1",
             name: "page1",
-            // component:page1,
             component: () => import(/* webpackChunkName: "page1" */ '@/views/page1'),
             meta: {
                 title: "页面1",
+                isAuth: false,
+                isLogin: false
+            },
+        },
+        {
+            path: "/page2",
+            name: "page2",
+            component: () => import(/* webpackChunkName: "page2" */ '@/views/page2'),
+            meta: {
+                title: "页面2",
                 isAuth: false,
                 isLogin: false
             },

@@ -10,6 +10,7 @@
     <p>{{ fullName }}</p>
     <p>{{ fullNameByMethod() }}</p>
     <router-link to="/page1">页面1</router-link>
+    <router-link to="/page2">页面2</router-link>
   </div>
 </template>
 
@@ -77,9 +78,11 @@ export default {
 <style scoped lang="scss">
 .home {
   font-family: "my-font";
+  font-size:$font-size;
+  //background: $theme-color;
   // color: $theme-color;
 }
-.text{
+.text {
   font-size: 40px;
 }
 </style>
